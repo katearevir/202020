@@ -16,13 +16,13 @@
         Your browser does not support the audio element.
     </audio>
     
-    <h1>Pomodoro</h1>
+    <h1>202020 Rule</h1>
     <span id="whichTime" style="font-size: 30px"></span>
     <div class="flex-container">
 
         <div class="timer">
             
-            <p id="countdown">25:00</p>
+            <p id="countdown">20:00</p>
         </div>
     
         <div class="settings">
@@ -32,16 +32,17 @@
         </div>
 
         <div class="bear">
+            <p id="quote"></p>
             <img id="image" src="bear.png">
         </div>
 
         <div class="playlist">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/VMAPTo7RVCo?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+           <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/VMAPTo7RVCo?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>-->
         </div>
     </div>
     
 
-    <footer>Pomodoro by Kate Rivera
+    <footer>202020 Rule by Kate Rivera
         <br>
         <a href="https://github.com/katearevir"><i class="fa fa-github" style="font-size:30px;color:white"></i> GitHub</a>
     </footer>
@@ -77,15 +78,19 @@ function startTimer(duration, display) {
                 resolve("timer ended");
             }
 
-            //where restart used to be
+            
             
         }
 
         if (restart){
-                display.textContent = "25:00";
+                display.textContent = "20:00";
                 clearInterval(inter);
                 resolve("timer ended");
             }
+
+        
+
+        
         
     }, 1000);
                 
@@ -117,36 +122,41 @@ playPauseButton.onclick = function() {
 restartButton.onclick = function(){
     playPauseButton.innerText = "Start";
     whichTimeText.innerText = "";
-    play = true;
     restart = true;
 }
 
 var whichTimeText = document.getElementById("whichTime");
 async function display() {
     var display = document.querySelector('#countdown');
-    console.log("Hi");
 
     while(!restart){
-        if (!restart && (iter % 4) !== 0 || iter === 0){
-            var workTime = 60 * 25; //25 mins
-            whichTimeText.innerText = "Work Time!"
+        if (!restart){
+            var workTime = 60*20; //20 mins
+            whichTimeText.innerText = "Feel free to look at your computer!"
             await startTimer(workTime, display);
             if (!restart){
-                var shortBreak = 60*5; // 5 mins
-                whichTimeText.innerText = "Short Break Time!"
+                var shortBreak = 20; // 20 seconds
+                whichTimeText.innerText = "Look 20 ft in front of you!"
                 await startTimer(shortBreak, display);
             }
-            iter++;
-        }
-        else if(!restart && (iter % 4) === 0){
-            var longBreak = 60*15; // 15 mins
-            whichTimeText.innerText = "Long Break Time!"
-            await startTimer(longBreak, display);
-            iter++;
         }
     }
 
 }
 
 </script>
+
+<script type="text/javascript">
+
+fetch('https://api.quotable.io/random')
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data.content);
+    const quote = document.getElementById("quote");
+    quote.textContent = data.content;
+  });
+
+    
+    </script>
+
 </html>
