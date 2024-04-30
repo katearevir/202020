@@ -31,13 +31,14 @@
             <button id="restart" type="button" style="cursor:pointer">Restart</button>
         </div>
 
-        <div class="bear">
+        <div class="motivquote">
             <p id="quote"></p>
             <!--<img id="image" src="bear.png">-->
         </div>
 
         <div class="playlist">
-           <iframe width="560" height="315" src="https://www.youtube.com/embed/VMAPTo7RVCo?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>-->
+            <iframe id="playlistiframe" width="500" height="300" src="https://www.youtube.com/embed/VMAPTo7RVCo?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+          <input type="url" id="vidurl" placeholder="Enter Playlist URL...">
         </div>
     </div>
     
@@ -143,9 +144,9 @@ async function display() {
     }
 
 }
-
 </script>
 
+<!--Quote API-->
 <script type="text/javascript">
 
 fetch('https://api.quotable.io/random?tags=motivational')
@@ -155,8 +156,40 @@ fetch('https://api.quotable.io/random?tags=motivational')
     const quote = document.getElementById("quote");
     quote.textContent = data.content;
   });
+</script>
 
+<!--Playlist-->
+<script>
+    // Get the input field
+var input = document.getElementById("vidurl");
+
+// Execute a function when the user presses a key on the keyboard
+input.addEventListener("keypress", function(event) {
+  // If the user presses the "Enter" key on the keyboard
+  if (event.key === "Enter") {
+/*
+    var iframe = document.getElementById("playlistiframe");
+    iframe.src = input.value;
+*/
+    //remove watch?v=
+    const removeWatch = (input.value).replace('watch?v=','');
     
-    </script>
+    //split url
+    const splitURL = removeWatch.split("/");
+
+    //insert embed/
+    splitURL.splice(3, 0, 'embed');
+
+    console.log(splitURL);
+
+    //rejoin
+    const embedURL = splitURL.join("/")
+    
+    var iframe = document.getElementById("playlistiframe");
+    iframe.src = embedURL+"?autoplay=1";
+
+  }
+});
+</script>
 
 </html>
