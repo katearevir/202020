@@ -76,12 +76,16 @@ function startTimer(duration, display) {
                 clearInterval(inter);
                 resolve("timer ended");
             }
-            if (restart){
+
+            //where restart used to be
+            
+        }
+
+        if (restart){
                 display.textContent = "25:00";
                 clearInterval(inter);
                 resolve("timer ended");
             }
-        }
         
     }, 1000);
                 
@@ -113,6 +117,7 @@ playPauseButton.onclick = function() {
 restartButton.onclick = function(){
     playPauseButton.innerText = "Start";
     whichTimeText.innerText = "";
+    play = true;
     restart = true;
 }
 
