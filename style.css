@@ -37,16 +37,23 @@ h1{
     height: 200px;
 }
 
-.bear{
+.motivquote{
     height: 200px;
     width:  315px;
 }
 
-#countdown{
+#quote{
+    font-size: 20px;
+}
+
+#countdown {
     font-size: 50px;
+}
+#countdown, #quote{
     border: 5px solid white;
     width: 30%;
     padding:60px;
+    border-radius: 4px;
 }
 
 .settings{
@@ -104,7 +111,7 @@ footer{
         margin-top: 200px;
       }
       
-    #image{
+    #motivquote{
         width: 400px;
     }
 }
