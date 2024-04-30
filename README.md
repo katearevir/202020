@@ -1,4 +1,4 @@
-# Pomodoro Technique
+# 202020 rule
 
 View the website on Render!
-<br> https://pomodoro-kr.onrender.com
+<br> https://.onrender.com
