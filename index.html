@@ -149,8 +149,8 @@ async function display() {
 
 <!--Quote API-->
 <script type="text/javascript">
-
-fetch('https://api.quotable.io/random?tags=motivational')
+//https://api.quotable.io/random?tags=motivational
+fetch('https://zenquotes.io/api/quotes/')
   .then((response) => response.json())
   .then((data) => {
     console.log(data.content);
